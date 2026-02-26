@@ -1,0 +1,31 @@
+arch snes.cpu
+lorom
+
+
+//Đây là code nhấn nút Select để bật chức năng debug trong Fire Emblem Monshō no Nazo (Super Famicom-1994)
+//コントローラーのセレクトボタンを押すことでファイアーエムブレム紋章の謎（スーファミ/1994）のデバッグルームを有効かするコードです。
+//This code enables the debug room in Fire Emblem Monshō no Nazo (Super Famicom-1994) by pressing Select button.
+
+
+//#####DEBUG ROOM#########
+org $81BBA3							 //địa chỉ kiểm tra debug room /デバッグルームのチェックアドレス/Debug room checking address
+	JML debugroom    				//nhảy tới địa chỉ trống trong memory để viết thêm code/新しいコードを書き加えるために空きメモリースペースへジャンプ/Jump to free memory space to implement some new codes
+	
+org $DFF010							//địa chỉ trống trong Rom gốc. Có thể thay bằng bất cứ địa chỉ trống nào khác. Dùng chức năng memory view của giả lập Mesen để xem chỗ nào trống dữ liệu
+debugroom:  		 				 //$DFF010は無改造紋章ロムの空きメモリースペース。ここで任意のアドレスを入れても良い。MESENなどデバッグ機能付きエミュレーターのメモリービュー機能を使えば空きメモリースペースが確認可能
+	SEP #$20						  //$DFF010 is a free memory address in the original Rom. Use can use any free space. Use the memory view function of Mesen or any debugger to check whether an adress is free or not.
+	LDA $0116					//đọc dữ liệu tay cầm /コントローラーの入力データ読み込み/read input data
+	CMP #$20				//kiểm tra xem nút Select có được nhấn hay không/セレクトボタンが押されているのかチェック/check that Select button being pressed or nào
+	BNE +					//nếu muốn thay bằng nút Start thì thay lệnh trên bằng CMP #$10 /スタートボタンでデバッグルームONにする場合、上記コードを「CMP #$10」にすればよい/Change bove code to CMP #$10 if you want to enable the debug room by pressing Start button
+	LDA #$06
+	STA $0C17		//kích hoạt debug room nếu nút Select được nhấn/セレクトボタンが押されている場合、デバッグルームをON/active the debugroom if Select button being pressed
++
+	REP #$20			
+	LDA $0BD1
+	AND #$00FF
+	TAX
+	SEP #$20
+	LDA $0BDF,x
+	STA $0C0A
+	JML $81BBC5
+	
