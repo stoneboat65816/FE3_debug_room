@@ -4,15 +4,16 @@ A. Tiếng Việt
 	I. Khái quát
 	II. Cấu trúc
 	III. Cách compile
-	IV. Tính năng phụ trợ
 	
 B. 日本語
+	I. 概要
+	II. 本フォルダーの構造成分
+	III. 実行方法
 	
 C. English
 	I. Overview
 	II. Structure
 	III. How to Compile
-	IV. Additional Features
 
 ########################   A. Tiếng Việt   ###################################
 I. Khái quát
