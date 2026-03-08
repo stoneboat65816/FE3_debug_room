@@ -142,10 +142,10 @@ We’re working on a copy of the ROM to make sure the original file stays untouc
 3. Double-click “01_run.bat.”
 xkas will then generate a new file called “01_FE3_debug.sfc” (or whatever name you specified in step 1).
 
-Run the newly created ROM file using a Super Famicom emulator such as bsnes, Mesen, or SNES9x.
+4. Run the newly created ROM file using a Super Famicom emulator such as bsnes, Mesen, or SNES9x.
 You can also run it on real Super Famicom hardware or compatible clone systems like SupaBoy or RetroN.
 
-In-game, after moving a character, hold the Select button and then choose any command like "Attack" or "Wait" to activate the Debug Room.
+5. In-game, after moving a character, hold the Select button and then choose any command like "Attack" or "Wait" to activate the Debug Room.
 You can modify the source code to change the button used to activate the Debug Room.
 
 Note: the untouched ROM must be a headerless one. You can open the ROM using any Hex-editor to comfirm whether it has 0x200 bytes header or not.
